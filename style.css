@@ -10,12 +10,30 @@ body {
 
 /* Header */
 header {
-  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   background: rgba(40,40,40,0.5);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   margin-bottom: 10px;
+}
+
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+#theme-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  padding: 10px 14px;
 }
 
 /* Контролы (выбор даты, кнопка Сегодня) */
@@ -226,6 +244,88 @@ button:hover {
     font-weight: 700;
     font-size: 18px;
     color: #FFD700;
+}
+
+/* ПЛАВНАЯ СМЕНА ТЕМЫ */
+body,
+header,
+.controls,
+.brigade-selection,
+.legend,
+.month,
+button,
+input,
+.day-cell,
+.month-total {
+  transition: background 0.4s ease, color 0.4s ease, border 0.4s ease;
+}
+
+/* 🌞 СВЕТЛАЯ ТЕМА */
+
+body.light {
+  background: #f4f6f9;
+  color: #222;
+}
+
+body.light header,
+body.light .controls,
+body.light .brigade-selection,
+body.light .legend,
+body.light .month {
+  background: rgba(255,255,255,0.7);
+}
+
+body.light input[type="date"],
+body.light button {
+  background: rgba(255,255,255,0.9);
+  color: #222;
+}
+
+body.light .month-total {
+  background: rgba(0,0,0,0.05);
+  color: #222;
+}
+
+body.light .month-total strong {
+  color: #ff9800;
+}
+
+body.light .day-cell.rest,
+body.light .day-cell.off {
+  background: #ffffff;
+  border: 1px solid #ddd;
+}
+
+body.light .shift-popup {
+  background: rgba(0,0,0,0.7);
+}
+
+body.light .day-cell.today {
+  border: 2px solid #000;
+}
+
+#shift-alert{
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-size: 16px;
+  z-index: 9999;
+  transition: 0.6s;
+  backdrop-filter: blur(10px);
+}
+
+#shift-alert.show{
+  transform: translateX(-50%) translateY(0);
+}
+
+body.light #shift-alert{
+  background: rgba(255,255,255,0.95);
+  color: black;
 }
 
 /* Анимации */
