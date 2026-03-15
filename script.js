@@ -262,7 +262,11 @@ function showShiftAlert(){
 }
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("SW OK"))
+      .catch(err => console.log("SW ERROR", err));
+  });
 }
 
 showShiftAlert();
